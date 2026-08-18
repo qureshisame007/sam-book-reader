@@ -1,0 +1,6 @@
+{
+  "name": "BookReader",
+  "description": "A minimal, lightweight, fast, and reliable book-reading application featuring authentic book paper aesthetics, two-page reading, bookmarks, search, and natural Hinglish translation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

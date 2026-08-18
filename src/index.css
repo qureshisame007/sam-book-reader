@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color-scheme: light dark;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #F8F3E9;
+    color: #2D2926;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+    overflow: hidden;
+  }
+}
+
+.font-book {
+  font-family: 'Lora', 'Merriweather', Georgia, serif;
+}
+
+.font-serif-title {
+  font-family: 'Cinzel', 'Lora', Georgia, serif;
+}
+
+/* Authentic physical book page styling with clean minimalism */
+.book-spine-shadow-left {
+  box-shadow: inset -14px 0 20px -12px rgba(93, 84, 71, 0.08);
+}
+
+.book-spine-shadow-right {
+  box-shadow: inset 14px 0 20px -12px rgba(93, 84, 71, 0.08);
+}
+
+.book-spine-dark-left {
+  box-shadow: inset -16px 0 24px -14px rgba(0, 0, 0, 0.4);
+}
+
+.book-spine-dark-right {
+  box-shadow: inset 16px 0 24px -14px rgba(0, 0, 0, 0.4);
+}
+
+.book-outer-shadow {
+  box-shadow: 
+    0 12px 32px -12px rgba(45, 41, 38, 0.12),
+    0 1px 4px 0 rgba(45, 41, 38, 0.04);
+}
+
+/* Subtle paper texture overlay */
+.paper-texture-natural {
+  background-color: #F8F3E9;
+  background-image: radial-gradient(#dcd4c3 0.4px, transparent 0.4px), radial-gradient(#dcd4c3 0.4px, #F8F3E9 0.4px);
+  background-size: 18px 18px;
+  background-position: 0 0, 9px 9px;
+}
+
+.paper-texture-old {
+  background-color: #EFE7D3;
+  background-image: radial-gradient(#c7b99c 0.5px, transparent 0.5px), radial-gradient(#c7b99c 0.5px, #EFE7D3 0.5px);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
+.paper-texture-dark {
+  background-color: #1A1A1A;
+  background-image: radial-gradient(#2d2d2d 0.5px, transparent 0.5px), radial-gradient(#2d2d2d 0.5px, #1A1A1A 0.5px);
+  background-size: 18px 18px;
+  background-position: 0 0, 9px 9px;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(166, 138, 100, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(166, 138, 100, 0.45);
+}
+
+/* Reader selectable text */
+.reader-text-content {
+  user-select: text;
+  cursor: text;
+}
+
+::selection {
+  background: #E8DECA;
+  color: #2D2926;
+}
+
+.dark-selection::selection {
+  background: #383228;
+  color: #F5EFEB;
+}
