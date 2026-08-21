@@ -1,37 +1,45 @@
-name: Build Windows EXE
+name: Build Windows Application
 
 on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
   workflow_dispatch:
 
 jobs:
-  build:
+  build-tauri-windows:
     runs-on: windows-latest
-
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Install Tauri CLI
-        run: npm install --save-dev @tauri-apps/cli
+      # Regenerate RC-compatible classic uncompressed ICO before building with Tauri
+      - name: Ensure RC-compatible icon.ico
+        run: node scripts/generate_icons.cjs
 
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: x86_64-pc-windows-msvc
-
-      - name: Build Tauri
+      - name: Build Tauri Desktop App
         run: npm run build:exe
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
-      - name: Upload EXE
+      - name: Upload Windows Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: BookReader-Windows
-          path: src-tauri/target/release/bundle/nsis/*.exe
+          name: BookReader-Windows-Installer
+          path: |
+            src-tauri/target/release/bundle/msi/*.msi
+            src-tauri/target/release/bundle/nsis/*.exe
+            src-tauri/target/release/bookreader.exe
